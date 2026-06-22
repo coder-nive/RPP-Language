@@ -1,0 +1,319 @@
+========================================
+R++ LANGUAGE SYNTAX
+========================================
+
+# COMMENTS
+
+# Single line comment
+
+/*
+Multi-line
+comment
+*/
+
+========================================
+OUTPUT
+========================================
+
+say("Hello World")
+
+say("Hello "{name})
+
+say({age})
+
+========================================
+VARIABLES
+========================================
+
+varnew:name
+varnew:age
+
+set name:"John"
+set age:15
+set online:true
+
+{name}
+{age}
+{online}
+
+Math:
+
+set age:+1
+set age:-1
+set age:*2
+set age:/2
+
+========================================
+WINDOWS
+========================================
+
+create.window:main(SetTitle="My Window")
+
+main.gui.size("500" x "300")
+
+main.gui.title("New Title")
+
+main.close
+
+========================================
+GUI ELEMENTS
+========================================
+
+main.gui.text("Hello World")
+
+main.gui.label("Score: 0")
+
+main.gui.label.update("Score: 10")
+
+main.gui.image("https://website.com/image.png")
+
+main.gui.input("Enter Name")
+
+set username:{input}
+
+main.gui.textbox
+
+main.gui.checkbox("Enable Music")
+
+main.gui.dropdown("Easy","Medium","Hard")
+
+main.gui.progress(50)
+
+========================================
+NOTIFICATIONS
+========================================
+
+main.sendnotification("Hello!")
+
+========================================
+BUTTONS
+========================================
+
+main.gui.button("Click Me")
+
+onbutton "Click Me"
+
+say("Button clicked!")
+
+end
+
+========================================
+LOOPS
+========================================
+
+loop inf.
+
+say("Running")
+
+end
+
+loop 5
+
+say("Hello")
+
+end
+
+========================================
+WHILE LOOP
+========================================
+
+while age < 18
+
+set age:+1
+
+end
+
+========================================
+FOR LOOP
+========================================
+
+for i:1,10
+
+say({i})
+
+end
+
+========================================
+WAIT
+========================================
+
+wait 1
+
+wait 0.5
+
+wait 10
+
+========================================
+IF STATEMENTS
+========================================
+
+if age == 18
+
+say("Adult")
+
+else
+
+say("Not Adult")
+
+end
+
+Operators:
+
+==
+!=
+>
+<
+>=
+<=
+
+========================================
+FUNCTIONS
+========================================
+
+func hello
+
+say("Hello!")
+
+end
+
+call hello
+
+func greet(name)
+
+say("Hello "{name})
+
+end
+
+call greet("John")
+
+========================================
+RANDOM
+========================================
+
+random num:1,100
+
+say({random})
+
+========================================
+LISTS
+========================================
+
+listnew:players
+
+players.add("John")
+
+players.add("Bob")
+
+players.remove("John")
+
+say({players})
+
+========================================
+DICTIONARIES
+========================================
+
+dictnew:user
+
+user.set("name","John")
+
+user.set("age",15)
+
+say({user.name})
+
+say({user.age})
+
+========================================
+FILES
+========================================
+
+file.write("test.txt","Hello")
+
+file.append("test.txt","More Text")
+
+file.read("test.txt")
+
+file.delete("test.txt")
+
+========================================
+IMPORTS
+========================================
+
+import "math.rpp"
+
+========================================
+TRY / CATCH
+========================================
+
+try
+
+file.read("missing.txt")
+
+catch
+
+say("File not found")
+
+end
+
+========================================
+KEYBOARD EVENTS
+========================================
+
+onkey "Enter"
+
+say("Enter Pressed")
+
+end
+
+========================================
+MOUSE EVENTS
+========================================
+
+onmouseclick
+
+say("Mouse Clicked")
+
+end
+
+========================================
+FULL EXAMPLE
+========================================
+
+varnew:name
+
+create.window:main(SetTitle="Welcome")
+
+main.gui.size("500" x "300")
+
+main.gui.text("What is your name?")
+
+main.gui.input("Name")
+
+set name:{input}
+
+if name == "Golden"
+
+main.sendnotification("Welcome back!")
+
+else
+
+main.sendnotification("Hello "{name})
+
+end
+
+main.gui.button("Click Me")
+
+onbutton "Click Me"
+
+say("Button Pressed!")
+
+end
+
+loop 5
+
+say("Hello "{name})
+
+wait 1
+
+ends
+
+python RPP/main.py RPP/examples/example.rpp

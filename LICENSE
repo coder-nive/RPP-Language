@@ -1,0 +1,74 @@
+R++ SOFTWARE LICENSE
+
+Copyright (c) 2026 R++ Development Team
+
+Version 1.0
+
+By downloading, installing, using, modifying, or distributing any part of R++, you agree to the terms of this license.
+
+1. PERMITTED USES
+
+You are allowed to:
+
+* Download and use R++ for personal, educational, commercial, and non-commercial purposes.
+* Modify the source code of R++ for your own use.
+* Configure, customize, and extend R++.
+* Create applications, games, software, scripts, and projects using R++.
+* Share programs created with R++.
+
+2. RESTRICTIONS
+
+You may NOT:
+
+* Reupload the original R++ source code or binaries to any website, repository, file-sharing service, or platform without written permission from the copyright holder.
+* Claim ownership of R++ or any part of its source code.
+* Remove copyright notices from the source code.
+* Rebrand R++ as your own programming language.
+* Advertise, market, or present R++ as your own product.
+* Sell, sublicense, or redistribute R++ itself without written permission from the copyright holder.
+* Publish modified versions of R++ under a different name without written permission from the copyright holder.
+
+3. PROJECTS CREATED WITH R++
+
+Programs, applications, games, and other works created using R++ belong entirely to their creators.
+
+Creators may:
+
+* Sell their projects.
+* Share their projects.
+* Modify their projects.
+* Distribute their projects.
+
+Creators are not required to make their project source code public.
+
+4. MODIFICATIONS
+
+You may modify R++ for private use.
+
+If you distribute a modified version of R++, you must obtain written permission from the copyright holder before distribution.
+
+5. ATTRIBUTION
+
+Any public use of R++ must include reasonable attribution to the original R++ project.
+
+Example:
+
+"Powered by R++"
+
+or
+
+"Built using the R++ Programming Language"
+
+6. TERMINATION
+
+Violation of any term in this license immediately terminates all rights granted by this license.
+
+7. WARRANTY
+
+R++ is provided "AS IS" without warranty of any kind. The authors are not liable for any damages, losses, or issues arising from the use of R++.
+
+8. RESERVATION OF RIGHTS
+
+All rights not explicitly granted by this license are reserved by the copyright holder.
+
+END OF LICENSE
