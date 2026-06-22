@@ -1,0 +1,22 @@
+varnew:name
+
+create.window:main(SetTitle="Welcome")
+
+main.gui.size("500" x "300")
+
+main.gui.text("What is your name?")
+
+main.gui.input("Name")
+
+set name:{input}
+
+if name == "Golden"
+main.sendnotification("Welcome back!")
+else
+main.sendnotification("Hello!")
+end
+
+loop 3
+say("Hello {name}")
+wait 1
+end
