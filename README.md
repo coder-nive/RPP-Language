@@ -6,6 +6,10 @@ R++ might have some bugs but we are still working on it!
 License: R++ License
 See the LICENSE file for details.
 
+## Download
+
+[Download ZIP File](https://www.golden-games.com/downloadR.html)
+
 Run a program with:
 
 ```bash
