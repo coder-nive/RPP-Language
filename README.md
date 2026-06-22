@@ -8,7 +8,7 @@ See the LICENSE file for details.
 
 ## Download
 
-[Download ZIP File](https://www.golden-games.com/downloadR.html)
+[Download ZIP File](https://www.golden-games.info/downloadR.html)
 
 Run a program with:
 
