@@ -31,10 +31,8 @@ class WindowManager:
 
         thread = threading.Thread(target=thread_main, daemon=False)
         thread.start()
-        # wait briefly for the window to be created so subsequent calls can schedule tasks
         created_event.wait(timeout=1.0)
         if name in self.windows:
-            # keep reference to thread so caller can wait for it
             self.windows[name]['thread'] = thread
 
     def size(self, name, value, vars_):
@@ -86,11 +84,9 @@ class WindowManager:
         root.after(0, do_image)
 
     def input(self, name, value, vars_):
-        # show a modal input dialog; tkinter dialogs must run in a Tk instance
         prompt = value.strip().strip('"')
         root = self.windows.get(name, {}).get('root')
         if not root:
-            # fallback: use a temporary hidden root
             tmp = tk.Tk()
             tmp.withdraw()
             res = simpledialog.askstring(title='Input', prompt=prompt)
@@ -185,11 +181,9 @@ class WindowManager:
         self.button_handlers.setdefault(label, []).append(handler)
 
     def register_key_handler(self, key, handler):
-        # placeholder for keyboard events
         pass
 
     def register_mouse_handler(self, handler):
-        # placeholder for mouse events
         pass
 
     def gui_title(self, name, value, vars_):
@@ -237,7 +231,6 @@ class WindowManager:
         root = self.windows[name].get('root')
         if not root:
             return
-        # parse options from value like "Easy","Medium","Hard"
         opts = [o.strip().strip('"') for o in value.split(',') if o.strip()]
         def create_dropdown():
             from tkinter import ttk
@@ -287,7 +280,6 @@ class WindowManager:
         root.after(0, update_progress)
 
     def _interpolate(self, s, vars_):
-        # replace {var}
         import re
         def repl(m):
             k = m.group(1)
