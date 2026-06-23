@@ -3,7 +3,6 @@ import ast
 
 
 def split_args(s):
-    # crude splitter for two arguments separated by ','
     parts = []
     depth = 0
     cur = ''
@@ -24,22 +23,16 @@ def split_args(s):
 
 def eval_expr(expr, vars_):
     expr = expr.strip()
-    # string literal
     if (expr.startswith('"') and expr.endswith('"')) or (expr.startswith("'") and expr.endswith("'")):
         s = expr[1:-1]
         return interpolate(s, vars_)
-    # concatenated strings like "Hello " {name}
-    # handle simple braces and numbers
-    # replace {var} occurrences
     if '{' in expr and '}' in expr:
         return interpolate(expr, vars_)
-    # try number literal
     try:
         if '.' in expr:
             return float(expr)
         return int(expr)
     except Exception:
-        # variable reference or list/dict access
         if '.' in expr and not expr.startswith('.'):
             # could be dict/list access
             parts = expr.split('.')
@@ -65,13 +58,11 @@ def interpolate(s, vars_):
         name = m.group(1)
         val = vars_.get(name)
         return str(val) if val is not None else ''
-    # replace {name}
     res = re.sub(r"\{([^}]+)\}", repl, s)
     return res
 
 
 def eval_condition(cond, vars_):
-    # support comparisons: ==, !=, >, <, >=, <=
     ops = ['==', '!=', '>=', '<=', '>', '<']
     for op in ops:
         if op in cond:
@@ -93,13 +84,11 @@ def eval_condition(cond, vars_):
                     return lv < rv
             except Exception:
                 return False
-    # fallback: truthy
     v = eval_expr(cond.strip(), vars_)
     return bool(v)
 
 
 def parse_args(s, vars_):
-    # parse SetTitle="My Window" style args into dict
     res = {}
     if not s:
         return res
