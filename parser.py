@@ -24,7 +24,6 @@ class Parser:
     def _parse_line(self, tok):
         s = tok.raw
         line = tok.line
-        # block starters: loop, if, func, onbutton, try, while, for, onkey, onmouseclick
         if s.startswith('loop ' ) or s == 'loop inf.':
             return self._parse_block('loop', s, line)
         if s.startswith('while '):
@@ -44,7 +43,6 @@ class Parser:
         if s.startswith('try'):
             return self._parse_block('try', s, line)
 
-        # simple statements
         if s.startswith('say('):
             return {'type': 'say', 'expr': s[4:-1], 'line': line}
         if s.startswith('varnew:'):
@@ -57,7 +55,6 @@ class Parser:
             name, val = rest.split(':',1)
             return {'type': 'set', 'name': name.strip(), 'value': val.strip(), 'line': line}
         if s.startswith('create.window:'):
-            # format: create.window:main(SetTitle="My Window")
             m = re.match(r'create\.window:(\w+)(\((.*)\))?', s)
             if not m:
                 raise ParseError('Invalid create.window', line)
@@ -110,7 +107,6 @@ class Parser:
                     return {'type': 'call', 'name': m.group(1), 'args': m.group(2), 'line': line}
             return {'type': 'call', 'name': rest, 'args': '', 'line': line}
         if s.startswith('file.'):
-            # file.write/read/delete/append
             if s.startswith('file.write('):
                 args = s[11:-1]
                 return {'type': 'file_write', 'args': args, 'line': line}
@@ -159,7 +155,6 @@ class Parser:
             return self._parse_block('if', s, line)
         if s.startswith('func '):
             return self._parse_block('func', s, line)
-        # comments or unknown
         return {'type': 'raw', 'raw': s, 'line': line}
 
     def _collect_block(self, line_no):
@@ -173,7 +168,6 @@ class Parser:
 
     def _parse_block(self, kind, header, line):
         if kind == 'loop':
-            # header may be 'loop 5' or 'loop inf.'
             parts = header.split(' ',1)
             count = parts[1].strip() if len(parts) > 1 else 'inf.'
             body = self._collect_block(line)
@@ -183,7 +177,6 @@ class Parser:
             body = self._collect_block(line)
             return {'type': 'while', 'cond': cond, 'body': Parser(body).parse(), 'line': line}
         if kind == 'for':
-            # format: for i:1,10
             rest = header[4:].strip()
             if ':' not in rest:
                 raise ParseError('Invalid for syntax', line)
@@ -193,7 +186,6 @@ class Parser:
         if kind == 'if':
             cond = header[3:].strip()
             body = self._collect_block(line)
-            # detect else inside body
             true_body = []
             false_body = []
             saw_else = False
@@ -207,7 +199,6 @@ class Parser:
                     false_body.append(t)
             return {'type': 'if', 'cond': cond, 'true': Parser(true_body).parse(), 'false': Parser(false_body).parse(), 'line': line}
         if kind == 'func':
-            # handle func name or func name(param1, param2, ...)
             rest = header[5:].strip()
             if '(' in rest:
                 m = re.match(r'(\w+)\((.*?)\)', rest)
