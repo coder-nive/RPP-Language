@@ -14,7 +14,6 @@ def main():
         ast = Parser(tokens).parse()
         interp = Interpreter()
         interp.run(ast)
-        # if GUI windows were created, wait for them to close before exiting
         try:
             if hasattr(interp, 'windows'):
                 interp.windows.wait_all()
