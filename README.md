@@ -9,7 +9,8 @@ See the LICENSE file for details.
 ## Download
 
 [Download ZIP File](https://www.golden-games.info/downloadR.html)
-This link will redirect you to my website and will download a zip containing the Phython code for R++!
+
+Download the latest release of R++ as a ZIP archive containing the complete Python source code, examples, and documentation.
 
 Run a program with:
 
