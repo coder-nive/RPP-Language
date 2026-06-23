@@ -49,7 +49,6 @@ class Interpreter:
                 self.windows.image(node['win'], node['value'], self.vars)
             elif t == 'gui_input':
                 res = self.windows.input(node['win'], node['value'], self.vars)
-                # common convention: store in {input}
                 self.vars['input'] = res
             elif t == 'gui_button':
                 self.windows.button(node['win'], node['value'], self.vars)
@@ -88,7 +87,6 @@ class Interpreter:
                 time.sleep(val)
             elif t == 'import':
                 path = node['path']
-                # simple import: tokenize, parse, run
                 from lexer import Lexer
                 from parser import Parser
                 tokens = Lexer(path).tokenize()
@@ -128,7 +126,6 @@ class Interpreter:
                 except Exception as e:
                     print('R++ Runtime Exception caught:', e)
             elif t == 'raw':
-                # ignore unknown raw lines
                 pass
             else:
                 raise RPPError(f"Unknown command: {t}", line)
@@ -138,7 +135,6 @@ class Interpreter:
             raise RPPError(str(e), line)
 
     def _handle_set(self, name, val, line):
-        # support arithmetic ops like +1, -1, *2, /2 or full value
         if val.startswith(('+', '-', '*', '/')):
             try:
                 cur = self.vars.get(name) or 0
