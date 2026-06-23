@@ -15,7 +15,6 @@ class Lexer:
         self.path = path
 
     def _strip_inline_comments(self, s):
-        # remove // style or # comments
         idx = s.find('#')
         if idx != -1:
             return s[:idx]
